@@ -228,6 +228,15 @@ canvas {
   max-width: 100%;
 }
 
+@media (width < 800px) {
+  body {
+    padding: 1rem;
+  }
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Fixes */
 
 /* Show all images */
