@@ -1,5 +1,4 @@
 $(async function () {
-  console.log("gaming");
   const postHtml = $("#post-html");
   const postWrapper = $("#post-wrapper");
   const postContainer = $("#post-wrapper-inner");
@@ -19,4 +18,13 @@ $(async function () {
       postImageContainer.append(canvas);
     });
   });
+
+  $.ajax({
+    url: "managed.svg",
+    dataType: "html",
+  }).done(function (svgData) {
+    $("head").append(svgData);
+  });
+
+  canvg();
 });
