@@ -56,6 +56,7 @@
     </header>
     <main>
       <div class="description card">
+        <p class="card-label">Description</p>
         <p>This tool allows you to copy over a Tumblr post and get a full image of it.</p>
         <p>To use this tool:</p>
         <ol>
@@ -71,20 +72,23 @@
         </ol>
       </div>
       <div class="controls card">
-        <label>
-          Post HTML
-          <textarea name="" id="post-html" rows="6"></textarea>
-        </label>
-        <button id="screenshot-post">Screenshot Post</button>
+        <p class="card-label">Controls</p>
+        <fieldset>
+          <label>
+            Post HTML
+            <textarea id="post-html" rows="6" placeholder="Paste your post here..."></textarea>
+          </label>
+          <button id="screenshot-post">Screenshot Post</button>
+        </fieldset>
       </div>
       <div class="post card">
-        <p class="card-label">Post Preview:</p>
+        <p class="card-label">Post Preview</p>
         <div id="post-wrapper">
           <div id="post-wrapper-inner"></div>
         </div>
       </div>
       <div class="post-output card">
-        <p class="card-label">Output Image:</p>
+        <p class="card-label">Output Image</p>
         <div id="post-image-container"></div>
       </div>
     </main>
