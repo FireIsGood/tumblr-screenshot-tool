@@ -58,8 +58,10 @@
       <div class="description card">
         <h2 class="card-label">Description</h2>
         <p>This tool allows you to copy over a Tumblr post and get a full image of it.</p>
+        <p>Due to how this works, you can only really do this on desktop. Sorry!</p>
         <p>To use this tool:</p>
         <ol>
+          <li>Set up the post how you would like (close notes, change theme)</li>
           <li>Inspect Element on the post's page</li>
           <li>Click the header</li>
           <li>Navigate up to the <code>Article</code> element</li>
@@ -76,20 +78,24 @@
         <fieldset>
           <label>
             Post HTML
-            <textarea id="post-html" rows="6" placeholder="Paste your post here..."></textarea>
+            <textarea id="post-html" rows="6" placeholder="Paste your post here..." spellcheck="false"></textarea>
           </label>
           <button id="screenshot-post">Screenshot Post</button>
         </fieldset>
       </div>
       <div class="post card">
         <h2 class="card-label">Post Preview</h2>
-        <div id="post-wrapper">
-          <div id="post-wrapper-inner"></div>
+        <div class="post-scroller">
+          <div id="post-wrapper">
+            <div id="post-wrapper-inner"></div>
+          </div>
         </div>
       </div>
       <div class="post-output card">
         <h2 class="card-label">Output Image</h2>
-        <div id="post-image-container"></div>
+        <div class="post-scroller">
+          <div id="post-image-container"></div>
+        </div>
       </div>
     </main>
     <footer class="container">
@@ -114,5 +120,6 @@
         >
       </p>
     </footer>
+    <div id="svg-definitions"></div>
   </body>
 </html>
