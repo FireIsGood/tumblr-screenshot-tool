@@ -2,7 +2,7 @@
 
 A tool to screenshot Tumblr posts. Mostly because node screenshots are annoying sometimes and I like having a border.
 
-This is just the source code. To use the tool, [visit the site]().
+This is just the source code. To use the tool, [visit the site](https://fireisgood.github.io/tumblr-screenshot-tool/).
 
 ## Copyright
 
