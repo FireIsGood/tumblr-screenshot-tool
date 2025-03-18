@@ -15,7 +15,7 @@ body {
   line-height: 1.5;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 1rem;
+  gap: 1.5rem;
   color: #44476a;
   background-color: #e6e7ee;
 
