@@ -1,3 +1,5 @@
+let loading = false; // Prevent multiple canvas screenshots at the same time
+
 const purifyConfig = {
   ADD_TAGS: ["use"],
 };
@@ -56,6 +58,7 @@ $(async function () {
   const screenshotPostButton = $("#screenshot-post");
   const saveButton = $("#save");
   const copyButton = $("#copy");
+  const loader = $('<p class="loader">loading <span aria-busy="true"></span></p>');
 
   postHtml.on("input", function () {
     postContainer.empty();
@@ -69,6 +72,10 @@ $(async function () {
   });
 
   screenshotPostButton.click(async function () {
+    if (loading) return;
+    loading = true;
+
+    postImageContainer.empty().append(loader);
     const canvas = await modernScreenshot.domToCanvas(postWrapper[0]);
     canvas.style.width = null;
     canvas.style.height = null;
@@ -76,6 +83,8 @@ $(async function () {
     postImageContainer.empty().append(canvas);
     saveButton.attr("disabled", null);
     copyButton.attr("disabled", null);
+
+    loading = false;
   });
 
   saveButton.click(function () {
