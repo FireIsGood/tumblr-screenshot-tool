@@ -46,6 +46,9 @@ $(async function () {
     postContainer.empty();
     postContainer.append(postHtml.val());
     processPost(postContainer, svgDefinitions);
+
+    postImageContainer.empty();
+    saveButton.attr("disabled", true);
   });
 
   screenshotPostButton.click(function () {
