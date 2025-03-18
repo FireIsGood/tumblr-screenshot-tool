@@ -51,12 +51,12 @@ $(async function () {
     saveButton.attr("disabled", true);
   });
 
-  screenshotPostButton.click(function () {
-    html2canvas(postWrapper[0]).then(function (canvas) {
-      canvas.style.width = null;
-      canvas.style.height = null;
-      postImageContainer.empty().append(canvas);
-    });
+  screenshotPostButton.click(async function () {
+    const canvas = await modernScreenshot.domToCanvas(postWrapper[0]);
+    canvas.style.width = null;
+    canvas.style.height = null;
+
+    postImageContainer.empty().append(canvas);
     saveButton.attr("disabled", null);
   });
 
