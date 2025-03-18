@@ -40,6 +40,7 @@ $(async function () {
   const postContainer = $("#post-wrapper-inner");
   const postImageContainer = $("#post-image-container");
   const screenshotPostButton = $("#screenshot-post");
+  const saveButton = $("#save");
 
   postHtml.on("input", function () {
     postContainer.empty();
@@ -53,6 +54,7 @@ $(async function () {
       canvas.style.height = null;
       postImageContainer.empty().append(canvas);
     });
+    saveButton.attr("disabled", null);
   });
 
   $("#save").click(function () {
