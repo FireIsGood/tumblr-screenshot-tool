@@ -1,12 +1,38 @@
-function processSvgs(wrapper, svgDefinitions) {
-  const toReplace = wrapper.find("use[href^='#']");
-  toReplace.replaceWith(function (i) {
-    const iconId = $(toReplace[i]).attr("href");
+async function processPost(wrapper, svgDefinitions) {
+  // Replace SVG elements to be inline
+  const svgToReplace = wrapper.find("use[href^='#']");
+  svgToReplace.replaceWith(function (i) {
+    const iconId = $(svgToReplace[i]).attr("href");
     const svgReplacement = svgDefinitions.find(iconId).clone();
-    return svgReplacement ?? toReplace[i];
+    return svgReplacement ?? svgToReplace[i];
+  });
+
+  // Replace Image elements with local elements
+  const imgToReplace = wrapper.find("img");
+  imgToReplace.replaceWith(function (i) {
+    const sources = imgToReplace[i].srcset.split(" ");
+
+    // Get lowest resolution for profile pictures, highest resolution for full images
+    const highRes = sources[sources.length - 2];
+    const lowRes = sources[0];
+    const replacementUrl = imgToReplace[i].alt === "Avatar" ? lowRes : highRes;
+
+    fetch(replacementUrl)
+      .then((result) => result.blob())
+      .then((blob) => {
+        imgToReplace[i].removeAttribute("srcset");
+        imgToReplace[i].src = URL.createObjectURL(blob);
+      });
+    return imgToReplace[i];
   });
 }
 
+function downloadCanvas(canvasImg, fileName) {
+  const downloadLink = document.createElement("a");
+  downloadLink.href = canvasImg.toDataURL();
+  downloadLink.download = fileName;
+  downloadLink.click();
+}
 $(async function () {
   const svgDefinitions = $("#svg-definitions");
   const postHtml = $("#post-html");
@@ -18,15 +44,20 @@ $(async function () {
   postHtml.on("input", function () {
     postContainer.empty();
     postContainer.append(postHtml.val());
-    processSvgs(postContainer, svgDefinitions);
+    processPost(postContainer, svgDefinitions);
   });
 
   screenshotPostButton.click(function () {
-    html2canvas(postWrapper[0], { allowTaint: true, scale: 1 }).then(function (canvas) {
+    html2canvas(postWrapper[0]).then(function (canvas) {
       canvas.style.width = null;
       canvas.style.height = null;
       postImageContainer.empty().append(canvas);
     });
+  });
+
+  $("#save").click(function () {
+    const canvas = postImageContainer.children()[0];
+    downloadCanvas(canvas, "post.png");
   });
 
   $.ajax({
