@@ -5,6 +5,9 @@
   --nu-border: 1px solid #d1d9e6;
 
   --scroller-height: 475px;
+  --post-width: 540px; /* A Tumblr thing */
+  --post-padding: 16px; /* can be customized */
+  --post-padding-color: white;
 }
 
 /* Layout/General styles */
@@ -107,15 +110,17 @@ footer {
 
 #post-wrapper {
   height: auto;
-  width: 580px;
-  padding: 16px;
+  width: calc(var(--post-width) + 2 * var(--post-padding));
+  padding: var(--post-padding);
   margin-inline: auto;
-  background-color: white;
+  background-color: var(--post-padding-color);
 }
 
 #post-wrapper-inner {
-  border: 1px solid rgba(var(--black), 0.07);
   border-radius: 8px;
+  background-color: white;
+  max-width: var(--post-width);
+  /* box-shadow: 0 0 4px #000a; */
 
   &:empty {
     padding-block: 2rem;
@@ -292,9 +297,4 @@ textarea {
 /* Blaze */
 .m5KTc:has([aria-label="Blaze"]) {
   display: none;
-}
-
-/* Fix outer color bug wow */
-.FtjPK.r0etU {
-  box-shadow: unset;
 }
