@@ -1,3 +1,7 @@
+const purifyConfig = {
+  ADD_TAGS: ["use"],
+};
+
 async function processPost(wrapper, svgDefinitions) {
   // Replace SVG elements to be inline
   const svgToReplace = wrapper.find("use[href^='#']");
@@ -40,7 +44,8 @@ $(async function () {
 
   postHtml.on("input", function () {
     postContainer.empty();
-    postContainer.append(postHtml.val());
+    const sanitized = DOMPurify.sanitize(postHtml.val(), purifyConfig);
+    postContainer.append(sanitized);
     processPost(postContainer, svgDefinitions);
 
     postImageContainer.empty();
