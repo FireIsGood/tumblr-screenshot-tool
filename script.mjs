@@ -1,6 +1,20 @@
 const purifyConfig = {
   ADD_TAGS: ["use"],
 };
+const downloadToast = Toastify({
+  text: "Downloaded!",
+  duration: 3000,
+  close: true,
+  gravity: "bottom", // `top` or `bottom`
+  position: "right", // `left`, `center` or `right`
+});
+const copyToast = Toastify({
+  text: "Copied to Clipboard!",
+  duration: 3000,
+  close: true,
+  gravity: "bottom", // `top` or `bottom`
+  position: "right", // `left`, `center` or `right`
+});
 
 async function processPost(wrapper, svgDefinitions) {
   // Replace SVG elements to be inline
@@ -41,6 +55,7 @@ $(async function () {
   const postImageContainer = $("#post-image-container");
   const screenshotPostButton = $("#screenshot-post");
   const saveButton = $("#save");
+  const copyButton = $("#copy");
 
   postHtml.on("input", function () {
     postContainer.empty();
@@ -49,6 +64,7 @@ $(async function () {
     processPost(postContainer, svgDefinitions);
 
     postImageContainer.empty();
+    copyButton.attr("disabled", true);
     saveButton.attr("disabled", true);
   });
 
@@ -59,11 +75,28 @@ $(async function () {
 
     postImageContainer.empty().append(canvas);
     saveButton.attr("disabled", null);
+    copyButton.attr("disabled", null);
   });
 
-  $("#save").click(function () {
+  saveButton.click(function () {
     const canvas = postImageContainer.children()[0];
     downloadCanvas(canvas, "post.png");
+    downloadToast.showToast();
+  });
+
+  copyButton.click(function () {
+    const canvas = postImageContainer.children()[0];
+    canvas.toBlob((blob) => {
+      navigator.clipboard
+        .write([
+          new ClipboardItem({
+            [blob.type]: blob,
+          }),
+        ])
+        .then(() => {
+          copyToast.showToast();
+        });
+    });
   });
 
   $.ajax({

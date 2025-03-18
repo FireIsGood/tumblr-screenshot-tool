@@ -83,6 +83,7 @@ footer {
   }
 
   button {
+    width: 100%;
     padding: 0.75rem 0.8rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -218,6 +219,10 @@ footer {
   vertical-align: middle;
 }
 
+fieldset.group {
+  flex-direction: row;
+}
+
 /* Element styles */
 label {
   gap: 0.5rem;
@@ -261,6 +266,20 @@ textarea {
   main {
     grid-template-columns: 1fr;
   }
+}
+
+/* Modifying other libraries */
+
+.toastify {
+  background: #e6e7ee;
+  box-shadow: var(--nu-shadow);
+  color: #44476a;
+  border-radius: 0.55rem;
+  border: 1px solid #d1d9e6;
+}
+
+.toast-close {
+  color: #44476a;
 }
 
 /* Fixes */
