@@ -11,11 +11,7 @@ async function processPost(wrapper, svgDefinitions) {
   const imgToReplace = wrapper.find("img");
   imgToReplace.replaceWith(function (i) {
     const sources = imgToReplace[i].srcset.split(" ");
-
-    // Get lowest resolution for profile pictures, highest resolution for full images
-    const highRes = sources[sources.length - 2];
-    const lowRes = sources[0];
-    const replacementUrl = imgToReplace[i].alt === "Avatar" ? lowRes : highRes;
+    const replacementUrl = sources[sources.length - 2];
 
     fetch(replacementUrl)
       .then((result) => result.blob())
