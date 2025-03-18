@@ -90,7 +90,7 @@ footer {
     font-weight: 700;
     box-shadow: var(--nu-shadow);
 
-    &:hover {
+    &:active {
       box-shadow: var(--nu-shadow-inset);
     }
 
@@ -139,7 +139,7 @@ footer {
   place-items: center;
 
   &:empty {
-    padding-block: 2rem;
+    padding-block: calc(2rem + 16px + 2px);
     text-align: center;
     &::after {
       font-style: italic;
