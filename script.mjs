@@ -40,8 +40,7 @@ $(async function () {
 
   postHtml.on("input", function () {
     postContainer.empty();
-    const sanitizedHtml = HtmlSanitizer.SanitizeHtml(postHtml.val());
-    postContainer.append(sanitizedHtml);
+    postContainer.append(postHtml.val());
     processPost(postContainer, svgDefinitions);
 
     postImageContainer.empty();
