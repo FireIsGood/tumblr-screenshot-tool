@@ -7,7 +7,7 @@
   --scroller-height: 475px;
   --post-width: 540px; /* A Tumblr thing */
   --custom-post-padding: 8px; /* can be customized, must be in px */
-  --custom-post-padding-color: white;
+  --custom-post-padding-color: #dce0e6;
 }
 
 /* Layout/General styles */
@@ -120,6 +120,11 @@ footer {
   border-radius: 8px;
   background-color: white;
   max-width: var(--post-width);
+  --shadow-color: 0deg 0% 60%;
+  box-shadow:
+    0 0.5px 2px 1px hsl(var(--shadow-color) / 0.15),
+    0 1.85px 1.75px 0 hsl(var(--shadow-color) / 0.25),
+    0 2.25px 3px -0.15px hsl(var(--shadow-color) / 0.45);
 
   &:empty {
     padding-block: 2rem;
@@ -316,4 +321,9 @@ textarea {
 /* Blaze */
 .m5KTc:has([aria-label="Blaze"]) {
   display: none;
+}
+
+/* Remove post box shadow so custom one is the only one */
+.FtjPK.r0etU {
+  box-shadow: unset;
 }
