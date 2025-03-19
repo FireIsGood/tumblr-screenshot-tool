@@ -120,7 +120,6 @@ footer {
   border-radius: 8px;
   background-color: white;
   max-width: var(--post-width);
-  /* box-shadow: 0 0 4px #000a; */
 
   &:empty {
     padding-block: 2rem;
