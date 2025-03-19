@@ -54,7 +54,8 @@ body {
       transparent calc(var(--bg-size) * 16px)
     );
   background-attachment: fixed;
-  background-size: 100%;
+  background-size: 100% 100vh;
+  background-size: 100% 100lvh;
 }
 
 header {
