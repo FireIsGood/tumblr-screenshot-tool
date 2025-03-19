@@ -49,6 +49,7 @@ function downloadCanvas(canvasImg, fileName) {
   downloadLink.download = fileName;
   downloadLink.click();
 }
+
 $(async function () {
   const svgDefinitions = $("#svg-definitions");
   const postHtml = $("#post-html");
@@ -59,22 +60,40 @@ $(async function () {
   const saveButton = $("#save");
   const copyButton = $("#copy");
   const loader = $('<p class="loader">loading <span aria-busy="true"></span></p>');
+  const stylePresetSelector = $("#post-style");
+
+  // Ensure output and buttons stay in sync
+  function resetOutput() {
+    postImageContainer.empty();
+    copyButton.attr("disabled", true);
+    saveButton.attr("disabled", true);
+  }
 
   postHtml.on("input", function () {
     postContainer.empty();
     const sanitized = DOMPurify.sanitize(postHtml.val(), purifyConfig);
     postContainer.append(sanitized);
     processPost(postContainer, svgDefinitions);
+    resetOutput();
+  });
 
+  stylePresetSelector.find('[type="radio"]').on("change", function () {
+    const styleName = this.value;
+
+    // Remove all classes
+    postWrapper.removeClass((_, name) => name); // (weird JQuery stuff)
+
+    // Add the noted class
+    postWrapper.addClass(styleName);
+    resetOutput();
     postImageContainer.empty();
-    copyButton.attr("disabled", true);
-    saveButton.attr("disabled", true);
   });
 
   screenshotPostButton.click(async function () {
     if (loading) return;
     loading = true;
     postHtml.attr("disabled", true);
+    screenshotPostButton.attr("disabled", true);
 
     postImageContainer.empty().append(loader);
     const canvas = await modernScreenshot.domToCanvas(postWrapper[0]);
@@ -84,6 +103,7 @@ $(async function () {
     postImageContainer.empty().append(canvas);
 
     postHtml.attr("disabled", null);
+    screenshotPostButton.attr("disabled", null);
     saveButton.attr("disabled", null);
     copyButton.attr("disabled", null);
 
@@ -111,6 +131,7 @@ $(async function () {
     });
   });
 
+  // Load SVG definitions (annoying to inline)
   $.ajax({
     url: "managed.svg",
     dataType: "html",

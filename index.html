@@ -57,7 +57,7 @@
       </div>
       <div class="controls card">
         <h2 class="card-label">Controls</h2>
-        <fieldset>
+        <fieldset class="control-group">
           <label>
             Post HTML
             <textarea
@@ -68,6 +68,17 @@
               autofocus
             ></textarea>
           </label>
+          <fieldset id="post-style" role="radiogroup">
+            <legend>Style Preset</legend>
+            <div class="form-radio">
+              <input type="radio" id="default" name="post-style" value="" checked />
+              <label for="default">Default</label>
+            </div>
+            <div class="form-radio">
+              <input type="radio" id="borderless" name="post-style" value="borderless" />
+              <label for="borderless">Borderless</label>
+            </div>
+          </fieldset>
           <button id="screenshot-post">
             Screenshot Post
             <svg
@@ -88,7 +99,7 @@
               <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
             </svg>
           </button>
-          <fieldset class="group">
+          <fieldset class="horizontal-group">
             <button id="save" disabled>
               Save
               <svg
