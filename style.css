@@ -6,8 +6,8 @@
 
   --scroller-height: 475px;
   --post-width: 540px; /* A Tumblr thing */
-  --post-padding: 16px; /* can be customized */
-  --post-padding-color: white;
+  --custom-post-padding: 8px; /* can be customized, must be in px */
+  --custom-post-padding-color: white;
 }
 
 /* Layout/General styles */
@@ -110,10 +110,10 @@ footer {
 
 #post-wrapper {
   height: auto;
-  width: calc(var(--post-width) + 2 * var(--post-padding));
-  padding: var(--post-padding);
+  width: calc(var(--post-width) + 2 * var(--custom-post-padding));
+  padding: var(--custom-post-padding);
   margin-inline: auto;
-  background-color: var(--post-padding-color);
+  background-color: var(--custom-post-padding-color);
 }
 
 #post-wrapper-inner {
