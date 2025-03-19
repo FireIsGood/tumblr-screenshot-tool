@@ -74,6 +74,7 @@ $(async function () {
   screenshotPostButton.click(async function () {
     if (loading) return;
     loading = true;
+    postHtml.attr("disabled", true);
 
     postImageContainer.empty().append(loader);
     const canvas = await modernScreenshot.domToCanvas(postWrapper[0]);
@@ -81,6 +82,8 @@ $(async function () {
     canvas.style.height = null;
 
     postImageContainer.empty().append(canvas);
+
+    postHtml.attr("disabled", null);
     saveButton.attr("disabled", null);
     copyButton.attr("disabled", null);
 
