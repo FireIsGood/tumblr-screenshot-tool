@@ -60,7 +60,8 @@ $(async function () {
   const saveButton = $("#save");
   const copyButton = $("#copy");
   const loader = $('<p class="loader">loading <span aria-busy="true"></span></p>');
-  const stylePresetSelector = $("#post-style");
+  const stylePresetSet = $("#post-style");
+  const additionalOptionSet = $("#additional-options");
 
   // Ensure output and buttons stay in sync
   function resetOutput() {
@@ -77,16 +78,23 @@ $(async function () {
     resetOutput();
   });
 
-  stylePresetSelector.find('[type="radio"]').on("change", function () {
+  const stylePresetRadioButtons = stylePresetSet.find('[type="radio"]');
+  const allPresets = [...stylePresetRadioButtons.map((_, elem) => elem.value)];
+  stylePresetRadioButtons.on("change", function () {
     const styleName = this.value;
 
-    // Remove all classes
-    postWrapper.removeClass((_, name) => name); // (weird JQuery stuff)
+    // Remove all preset classes
+    postWrapper.removeClass(allPresets);
 
     // Add the noted class
     postWrapper.addClass(styleName);
     resetOutput();
-    postImageContainer.empty();
+  });
+
+  additionalOptionSet.find('[type="checkbox"]').on("change", function () {
+    const styleName = this.value;
+    postWrapper.toggleClass(styleName);
+    resetOutput();
   });
 
   screenshotPostButton.click(async function () {

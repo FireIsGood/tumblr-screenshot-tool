@@ -68,16 +68,25 @@
               autofocus
             ></textarea>
           </label>
-          <fieldset id="post-style" role="radiogroup">
-            <legend>Style Preset</legend>
-            <div class="form-radio">
-              <input type="radio" id="default" name="post-style" value="" checked />
-              <label for="default">Default</label>
-            </div>
-            <div class="form-radio">
-              <input type="radio" id="borderless" name="post-style" value="borderless" />
-              <label for="borderless">Borderless</label>
-            </div>
+          <fieldset class="horizontal-group">
+            <fieldset id="post-style" role="radiogroup">
+              <legend>Style Preset</legend>
+              <div class="form-radio">
+                <input type="radio" id="default" name="post-style" value="" checked />
+                <label for="default">Default</label>
+              </div>
+              <div class="form-radio">
+                <input type="radio" id="borderless" name="post-style" value="borderless" />
+                <label for="borderless">Borderless</label>
+              </div>
+            </fieldset>
+            <fieldset id="additional-options">
+              <legend>Additional Options</legend>
+              <div class="form-checkbox">
+                <input type="checkbox" id="remove-header" value="remove-header" />
+                <label for="remove-header">Remove Header</label>
+              </div>
+            </fieldset>
           </fieldset>
           <button id="screenshot-post">
             Screenshot Post
