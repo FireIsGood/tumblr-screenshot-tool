@@ -30,16 +30,27 @@ async function processPost(wrapper, svgDefinitions) {
   // Replace Image elements with local elements
   const imgToReplace = wrapper.find("img");
   imgToReplace.replaceWith(function (i) {
-    const sources = imgToReplace[i].srcset.split(" ");
+    const elem = imgToReplace[i];
+    const sources = elem.srcset.split(" ");
     const replacementUrl = sources[sources.length - 2];
 
     fetch(replacementUrl)
       .then((result) => result.blob())
       .then((blob) => {
-        imgToReplace[i].removeAttribute("srcset");
-        imgToReplace[i].src = URL.createObjectURL(blob);
+        elem.removeAttribute("srcset");
+        elem.src = URL.createObjectURL(blob);
       });
-    return imgToReplace[i];
+    return elem;
+  });
+
+  // Replace timestamps with actual times
+  const timeToReplace = wrapper.find("time");
+  timeToReplace.replaceWith(function (i) {
+    const elem = timeToReplace[i];
+    const timestamp = moment(elem.dateTime);
+    elem.innerText = timestamp.format("MMM D, YYYY");
+
+    return elem;
   });
 }
 
