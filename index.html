@@ -149,7 +149,7 @@
           </fieldset>
         </fieldset>
       </div>
-      <div class="post card">
+      <div class="post-preview card">
         <h2 class="card-label">Post Preview</h2>
         <div class="post-scroller">
           <div id="post-wrapper">
@@ -159,6 +159,15 @@
       </div>
       <div class="post-output card">
         <h2 class="card-label">Output Image</h2>
+        <label for="post-link" class="sr-only"> Post Link </label>
+        <textarea
+          id="post-link"
+          class="readonly-textarea"
+          rows="1"
+          spellcheck="false"
+          readonly
+          placeholder="(Post link will appear here...)"
+        ></textarea>
         <div class="post-scroller">
           <div id="post-image-container"></div>
         </div>

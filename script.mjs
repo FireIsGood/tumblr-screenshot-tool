@@ -64,6 +64,7 @@ function downloadCanvas(canvasImg, fileName) {
 $(async function () {
   const svgDefinitions = $("#svg-definitions");
   const postHtml = $("#post-html");
+  const postLinkWrapper = $("#post-link");
   const postWrapper = $("#post-wrapper");
   const postContainer = $("#post-wrapper-inner");
   const postImageContainer = $("#post-image-container");
@@ -83,10 +84,23 @@ $(async function () {
 
   postHtml.on("input", function () {
     postContainer.empty();
+    postLinkWrapper.val("");
     const sanitized = DOMPurify.sanitize(postHtml.val(), purifyConfig);
     postContainer.append(sanitized);
     processPost(postContainer, svgDefinitions);
+
+    // Get the post URL via the user's name link and the reblog button
+    const userLink = postContainer.find('header a[rel="author"]').attr("href");
+    const reblogLink = postContainer.find('a[aria-label="Reblog"]').attr("href");
+    const postSuffix = reblogLink.split("/").slice(3, -1).join("/"); // Cuts off the prefix and unneeded suffix
+    const postLink = `https://www.tumblr.com${userLink}/${postSuffix}`;
+    postLinkWrapper.val(postLink);
+
     resetOutput();
+  });
+
+  postLinkWrapper.click(function () {
+    postLinkWrapper.select();
   });
 
   const stylePresetRadioButtons = stylePresetSet.find('[type="radio"]');

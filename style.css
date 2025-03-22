@@ -246,7 +246,7 @@ footer {
   box-shadow: var(--custom-post-shadow);
 
   &:empty {
-    padding-block: 2rem;
+    padding-block: calc(2rem + 3.65rem / 2); /* Adds the height of the output link */
     text-align: center;
     &::after {
       font-style: italic;
@@ -255,7 +255,7 @@ footer {
   }
 }
 
-.post {
+.post-preview {
   overflow-x: auto;
 }
 
@@ -268,7 +268,7 @@ footer {
   place-items: center;
 
   &:empty {
-    padding-block: calc(2rem + 16px + 2px);
+    padding-block: calc(2rem + var(--custom-post-padding));
     text-align: center;
     &::after {
       font-style: italic;
@@ -340,6 +340,10 @@ footer {
   margin-inline: auto;
   overflow: auto;
   scrollbar-gutter: stable;
+
+  .post-output & {
+    max-height: calc(var(--scroller-height) - 3.65rem); /* Adds the height of the output link */
+  }
 }
 
 .button-icon {
@@ -389,6 +393,12 @@ textarea {
   }
 }
 
+.readonly-textarea {
+  min-height: unset;
+  resize: none;
+  margin-bottom: 0.75rem;
+}
+
 @media (width < 800px) {
   body {
     padding: 1rem;
@@ -412,6 +422,25 @@ textarea {
   background-repeat: no-repeat;
   content: "";
   vertical-align: -0.125em;
+}
+
+/* Screen reader shenans */
+.sr-only {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+  clip: rect(1px 1px 1px 1px);
+  /* maybe deprecated but we need to support legacy browsers */
+  clip: rect(1px, 1px, 1px, 1px);
+  /* modern browsers, clip-path works inwards from each corner */
+  clip-path: inset(50%);
+  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+  white-space: nowrap;
 }
 
 /* Modifying other libraries */
