@@ -27,22 +27,6 @@ async function processPost(wrapper, svgDefinitions) {
     return svgReplacement ?? svgToReplace[i];
   });
 
-  // Replace Image elements with local elements
-  const imgToReplace = wrapper.find("img");
-  imgToReplace.replaceWith(function (i) {
-    const elem = imgToReplace[i];
-    const sources = elem.srcset.split(" ");
-    const replacementUrl = sources[sources.length - 2];
-
-    fetch(replacementUrl)
-      .then((result) => result.blob())
-      .then((blob) => {
-        elem.removeAttribute("srcset");
-        elem.src = URL.createObjectURL(blob);
-      });
-    return elem;
-  });
-
   // Replace timestamps with actual times
   const timeToReplace = wrapper.find("time");
   timeToReplace.replaceWith(function (i) {
