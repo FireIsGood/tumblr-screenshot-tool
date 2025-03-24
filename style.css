@@ -197,6 +197,7 @@ footer {
     line-height: 1.5;
     border-radius: 0.55rem;
     font-weight: 700;
+    background-color: #e6e7ee;
     box-shadow: var(--nu-shadow);
 
     &:active {
@@ -208,7 +209,6 @@ footer {
       opacity: 0.65;
       box-shadow: var(--nu-shadow-inset);
       color: #31344b;
-      background-color: #e6e7ee;
       border-color: #e6e7ee;
     }
   }
