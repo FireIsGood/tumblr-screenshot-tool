@@ -230,12 +230,13 @@ footer {
 }
 
 #post-wrapper.remove-header {
-  header {
+  header:has(#managed-icon__badge-reblog) {
     display: none;
-  }
-  header + div {
-    border-radius: 8px 8px 0 0;
-    overflow: clip;
+
+    & + div {
+      border-radius: 8px 8px 0 0;
+      overflow: clip;
+    }
   }
 }
 
