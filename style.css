@@ -220,6 +220,7 @@ footer {
   padding: var(--custom-post-padding);
   margin-inline: auto;
   background-color: var(--custom-post-padding-color);
+  transition: all 200ms ease;
 }
 
 /* Custom post styles */
