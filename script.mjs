@@ -27,6 +27,13 @@ async function processPost(wrapper, svgDefinitions) {
     return svgReplacement ?? this;
   });
 
+  // Strip href attributes from links
+  const linkToReplace = wrapper.find("a[href]");
+  linkToReplace.replaceWith(function () {
+    $(this).attr("href", null);
+    return this;
+  });
+
   // Replace foreign Image elements with local elements
   const imgToReplace = wrapper.find("img");
   imgToReplace.replaceWith(function () {
