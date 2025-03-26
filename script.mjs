@@ -21,10 +21,27 @@ const copyToast = Toastify({
 async function processPost(wrapper, svgDefinitions) {
   // Replace SVG elements to be inline
   const svgToReplace = wrapper.find("use[href^='#']");
-  svgToReplace.replaceWith(function (i) {
-    const iconId = $(svgToReplace[i]).attr("href");
+  svgToReplace.replaceWith(function () {
+    const iconId = $(this).attr("href");
     const svgReplacement = svgDefinitions.find(iconId).clone();
-    return svgReplacement ?? svgToReplace[i];
+    return svgReplacement ?? this;
+  });
+
+  // Replace foreign Image elements with local elements
+  const imgToReplace = wrapper.find("img");
+  imgToReplace.replaceWith(function () {
+    if (!this.srcset) return this; // If no source set, we don't need to replace it via the method below
+
+    const sources = this.srcset.split(" ");
+    const replacementUrl = sources[sources.length - 2];
+
+    fetch(replacementUrl)
+      .then((result) => result.blob())
+      .then((blob) => {
+        this.removeAttribute("srcset");
+        this.src = URL.createObjectURL(blob);
+      });
+    return this;
   });
 
   // Replace timestamps with actual times
@@ -66,7 +83,9 @@ $(async function () {
     saveButton.attr("disabled", true);
   }
 
+  // Update output area based on changes to input box
   postHtml.on("input", function () {
+    // Update output preview box
     postContainer.empty();
     postLinkWrapper.val("");
     const sanitized = DOMPurify.sanitize(postHtml.val(), purifyConfig);
@@ -76,9 +95,11 @@ $(async function () {
     // Get the post URL via the user's name link and the reblog button
     const userLink = postContainer.find('header a[rel="author"]').attr("href");
     const reblogLink = postContainer.find('a[aria-label="Reblog"]').attr("href");
-    const postSuffix = reblogLink.split("/").slice(3, -1).join("/"); // Cuts off the prefix and unneeded suffix
-    const postLink = `https://www.tumblr.com${userLink}/${postSuffix}`;
-    postLinkWrapper.val(postLink);
+    if (userLink && reblogLink) {
+      const postSuffix = reblogLink.split("/").slice(3, -1).join("/"); // Cuts off the prefix and unneeded suffix
+      const postLink = `https://www.tumblr.com${userLink}/${postSuffix}`;
+      postLinkWrapper.val(postLink);
+    }
 
     resetOutput();
   });
@@ -100,6 +121,7 @@ $(async function () {
     resetOutput();
   });
 
+  // Toggle classes or do additional cases on specific checkboxes
   additionalOptionSet.find('[type="checkbox"]').on("change", function () {
     const styleName = this.value;
     postWrapper.toggleClass(styleName);
