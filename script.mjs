@@ -90,7 +90,7 @@ $(async function () {
   const screenshotPostButton = $("#screenshot-post");
   const saveButton = $("#save");
   const copyButton = $("#copy");
-  const loader = $('<p class="loader">loading <span aria-busy="true"></span></p>');
+  const loader = $('<p class="loader">loading <span id="loader-progress"></span> <span aria-busy="true"></span></p>');
   const stylePresetSet = $("#post-style");
   const additionalOptionSet = $("#additional-options");
 
@@ -109,7 +109,6 @@ $(async function () {
     const sanitized = DOMPurify.sanitize(postHtml.val(), purifyConfig);
     postContainer.append(sanitized);
     const { postLink } = await processPost(postContainer, svgDefinitions);
-    console.log(postLink);
     postLinkWrapper.val(postLink ?? "");
 
     resetOutput();
@@ -146,7 +145,13 @@ $(async function () {
     screenshotPostButton.attr("disabled", true);
 
     postImageContainer.empty().append(loader);
-    const canvas = await modernScreenshot.domToCanvas(postWrapper[0]);
+    const canvas = await modernScreenshot.domToCanvas(postWrapper[0], {
+      debug: true,
+      progress: (current, total) => {
+        $("#loader-progress").text(`[${current}/${total}]`);
+        console.log(`${current}/${total}`);
+      },
+    });
     canvas.style.width = null;
     canvas.style.height = null;
 
