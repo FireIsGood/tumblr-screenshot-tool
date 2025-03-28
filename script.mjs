@@ -19,6 +19,15 @@ const copyToast = Toastify({
 });
 
 async function processPost(wrapper, svgDefinitions) {
+  // Save links
+  const userLink = wrapper.find('header a[rel="author"]').attr("href");
+  const reblogLink = wrapper.find('a[aria-label="Reblog"]').attr("href");
+  let postLink = undefined;
+  if (userLink && reblogLink) {
+    const postSuffix = reblogLink.split("/").slice(3, -1).join("/"); // Cuts off the prefix and unneeded suffix
+    postLink = `https://www.tumblr.com${userLink}/${postSuffix}`;
+  }
+
   // Replace SVG elements to be inline
   const svgToReplace = wrapper.find("use[href^='#']");
   svgToReplace.replaceWith(function () {
@@ -60,6 +69,8 @@ async function processPost(wrapper, svgDefinitions) {
 
     return elem;
   });
+
+  return { postLink };
 }
 
 function downloadCanvas(canvasImg, fileName) {
@@ -91,22 +102,15 @@ $(async function () {
   }
 
   // Update output area based on changes to input box
-  postHtml.on("input", function () {
+  postHtml.on("input", async function () {
     // Update output preview box
     postContainer.empty();
     postLinkWrapper.val("");
     const sanitized = DOMPurify.sanitize(postHtml.val(), purifyConfig);
     postContainer.append(sanitized);
-    processPost(postContainer, svgDefinitions);
-
-    // Get the post URL via the user's name link and the reblog button
-    const userLink = postContainer.find('header a[rel="author"]').attr("href");
-    const reblogLink = postContainer.find('a[aria-label="Reblog"]').attr("href");
-    if (userLink && reblogLink) {
-      const postSuffix = reblogLink.split("/").slice(3, -1).join("/"); // Cuts off the prefix and unneeded suffix
-      const postLink = `https://www.tumblr.com${userLink}/${postSuffix}`;
-      postLinkWrapper.val(postLink);
-    }
+    const { postLink } = await processPost(postContainer, svgDefinitions);
+    console.log(postLink);
+    postLinkWrapper.val(postLink ?? "");
 
     resetOutput();
   });
