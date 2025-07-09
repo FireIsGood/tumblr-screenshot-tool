@@ -241,6 +241,12 @@ footer {
   }
 }
 
+#post-wrapper.remove-follow {
+  .zn53i.EF4A5.r21y5 {
+    display: none;
+  }
+}
+
 #post-wrapper-inner {
   border-radius: 8px;
   background-color: white;
