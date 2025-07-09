@@ -334,7 +334,7 @@ body {
   --follow: 243, 248, 251;
   --color-subtext: rgb(var(--white-on-dark));
   --font-family: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
-  --font-family-modern: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  --font-family-modern: "Favorit Modern", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   --accent: rgba(0, 184, 255, 1);
   --accent-fg: rgba(0, 0, 0, 1);
   --accent-fg-light: rgba(255, 255, 255, 1);
@@ -539,5 +539,93 @@ body {
   src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-85-cf2f6136.woff2) format("woff2");
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-85-italic-b336f07b.woff2) format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-medium-fbc7316f.woff2) format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-medium-italic-243f8ff2.woff2) format("woff2");
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit Modern;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-85-cf2f6136.woff2) format("woff2");
+  font-style: normal;
+  font-weight: 350;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit Modern;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-85-italic-b336f07b.woff2) format("woff2");
+  font-style: italic;
+  font-weight: 350;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit Modern;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-regular-52013406.woff2) format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit Modern;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-regular-italic-3c2d0dda.woff2) format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit Modern;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-medium-fbc7316f.woff2) format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit Modern;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-medium-italic-243f8ff2.woff2) format("woff2");
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit Modern;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-bold-014cc624.woff2) format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Favorit Modern;
+  src: url(https://assets.tumblr.com/pop/src/assets/fonts/favorit/favorit-bold-italic-72be77af.woff2) format("woff2");
+  font-style: italic;
+  font-weight: 700;
   font-display: swap;
 }
