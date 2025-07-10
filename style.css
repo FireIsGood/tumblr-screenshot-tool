@@ -231,7 +231,7 @@ footer {
 }
 
 #post-wrapper.remove-header {
-  header:has(#managed-icon__badge-reblog) {
+  header:has(#managed-icon__ds-badge-reblog-20) {
     display: none;
 
     & + div {
