@@ -20,13 +20,9 @@ const copyToast = Toastify({
 
 async function processPost(wrapper, svgDefinitions) {
   // Save links
-  const userLink = wrapper.find('header a[rel="author"]').attr("href");
-  const reblogLink = wrapper.find('a[aria-label="Reblog"]').attr("href");
-  let postLink = undefined;
-  if (userLink && reblogLink) {
-    const postSuffix = reblogLink.split("/").slice(3, -1).join("/"); // Cuts off the prefix and unneeded suffix
-    postLink = `https://www.tumblr.com${userLink}/${postSuffix}`;
-  }
+  const postPath = wrapper.find('a[aria-label="Permalink"]').attr("href");
+  const postLink = `https://www.tumblr.com${postPath}`;
+  console.log(postPath, postLink);
 
   // Replace SVG elements to be inline
   const svgToReplace = wrapper.find("use[href^='#']");
