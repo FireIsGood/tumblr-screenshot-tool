@@ -83,6 +83,7 @@ $(async function () {
   const postWrapper = $("#post-wrapper");
   const postContainer = $("#post-wrapper-inner");
   const postImageContainer = $("#post-image-container");
+  const pasteClipboardButton = $("#paste-clipboard");
   const screenshotPostButton = $("#screenshot-post");
   const saveButton = $("#save");
   const copyButton = $("#copy");
@@ -98,7 +99,7 @@ $(async function () {
   }
 
   // Update output area based on changes to input box
-  postHtml.on("input", async function () {
+  postHtml.on("input", async function (event) {
     // Update output preview box
     postContainer.empty();
     postLinkWrapper.val("");
@@ -132,6 +133,12 @@ $(async function () {
     const styleName = this.value;
     postWrapper.toggleClass(styleName);
     resetOutput();
+  });
+
+  pasteClipboardButton.click(async function () {
+    const text = await navigator.clipboard.readText();
+    postHtml.val(text);
+    postHtml[0].dispatchEvent(new InputEvent("input"));
   });
 
   screenshotPostButton.click(async function () {
