@@ -76,6 +76,15 @@ function downloadCanvas(canvasImg, fileName) {
   downloadLink.click();
 }
 
+function localStorageGet(key) {
+  if (!window.localStorage) return null;
+  return window.localStorage.getItem(key);
+}
+function localStorageSet(key, value) {
+  if (!window.localStorage) return null;
+  window.localStorage.setItem(key, value);
+}
+
 $(async function () {
   const svgDefinitions = $("#svg-definitions");
   const postHtml = $("#post-html");
@@ -91,6 +100,10 @@ $(async function () {
   const stylePresetSet = $("#post-style");
   const additionalOptionSet = $("#additional-options");
 
+  let stylePresetValue = localStorageGet("stylePreset") ?? "";
+  let additionalOptionValues =
+    localStorageGet("additionalOptions") !== null ? JSON.parse(localStorageGet("additionalOptions")) : {};
+
   // Ensure output and buttons stay in sync
   function resetOutput() {
     postImageContainer.empty();
@@ -99,7 +112,7 @@ $(async function () {
   }
 
   // Update output area based on changes to input box
-  postHtml.on("input", async function (event) {
+  postHtml.on("input", async function () {
     // Update output preview box
     postContainer.empty();
     postLinkWrapper.val("");
@@ -118,21 +131,29 @@ $(async function () {
   const stylePresetRadioButtons = stylePresetSet.find('[type="radio"]');
   const allPresets = [...stylePresetRadioButtons.map((_, elem) => elem.value)];
   stylePresetRadioButtons.on("change", function () {
-    const styleName = this.value;
+    stylePresetValue = this.value;
 
     // Remove all preset classes
     postWrapper.removeClass(allPresets);
 
     // Add the noted class
-    postWrapper.addClass(styleName);
+    postWrapper.addClass(stylePresetValue);
     resetOutput();
+
+    // Update saved settings
+    localStorageSet("stylePreset", stylePresetValue);
   });
 
   // Toggle classes or do additional cases on specific checkboxes
   additionalOptionSet.find('[type="checkbox"]').on("change", function () {
     const styleName = this.value;
+    additionalOptionValues[this.value] = this.checked;
+
     postWrapper.toggleClass(styleName);
     resetOutput();
+
+    // Update saved settings
+    localStorageSet("additionalOptions", JSON.stringify(additionalOptionValues));
   });
 
   pasteClipboardButton.click(async function () {
@@ -195,5 +216,12 @@ $(async function () {
     dataType: "html",
   }).done(function (svgData) {
     svgDefinitions.empty().append(svgData);
+  });
+
+  // Sync local storage
+  stylePresetSet.find(`[value="${stylePresetValue}"]`).click();
+  Object.entries(additionalOptionValues).forEach(([option, value]) => {
+    if (!value) return;
+    additionalOptionSet.find(`[value="${option}"]`).click();
   });
 });
