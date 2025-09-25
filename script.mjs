@@ -22,7 +22,6 @@ async function processPost(wrapper, svgDefinitions) {
   // Save links
   const postPath = wrapper.find('a[aria-label="Permalink"]').attr("href");
   const postLink = `https://www.tumblr.com${postPath}`;
-  console.log(postPath, postLink);
 
   // Replace SVG elements to be inline
   const svgToReplace = wrapper.find("use[href^='#']");
