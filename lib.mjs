@@ -33,6 +33,20 @@ export function createFooterMarkup(notes) {
         </button>
       </div>
       <div class="sfGru">
+        <button class="TRX6J" aria-label="Reply">
+          <span class="EvhBA" tabindex="-1"
+            ><svg
+              height="24"
+              role="presentation"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+              style="--icon-color-primary: rgba(var(--black), 0.65)"
+            >
+              <use href="#managed-icon__ds-reply-outline-24"></use></svg
+          ></span>
+        </button>
+      </div>
+      <div class="sfGru">
         <span class="Vcrhu" data-testid="controlled-popover-wrapper" style="height: 100%"
           ><span class="Vcrhu"
             ><a aria-label="Reblog" class="fvSXi qRMZE"
