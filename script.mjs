@@ -1,4 +1,8 @@
+import { createFooterMarkup } from "./lib.mjs";
+
 let loading = false; // Prevent multiple canvas screenshots at the same time
+const additionalOptionValues =
+  localStorageGet("additionalOptions") !== null ? JSON.parse(localStorageGet("additionalOptions")) : {};
 
 const purifyConfig = {
   ADD_TAGS: ["use"],
@@ -22,6 +26,13 @@ async function processPost(wrapper, svgDefinitions) {
   // Save links
   const postPath = wrapper.find('a[aria-label="Permalink"]').attr("href");
   const postLink = `https://www.tumblr.com${postPath}`;
+
+  // Replace the footer with the logged out (old) version
+  if (additionalOptionValues["classic-footer"] === true) {
+    const footer = wrapper.find("footer._Krz6");
+    const newFooter = createFooter(footer);
+    footer.replaceWith(newFooter);
+  }
 
   // Replace SVG elements to be inline
   const svgToReplace = wrapper.find("use[href^='#']");
@@ -68,6 +79,15 @@ async function processPost(wrapper, svgDefinitions) {
   return { postLink };
 }
 
+function createFooter(footer) {
+  const reblogCount = parseFloat(footer.find('[aria-label="Reblog"]').text().split(",").join(""));
+  const likeCount = parseFloat(footer.find('[aria-label="Like"]').text().split(",").join(""));
+
+  const newFooter = $(createFooterMarkup(reblogCount + likeCount));
+
+  return newFooter;
+}
+
 function downloadCanvas(canvasImg, fileName) {
   const downloadLink = document.createElement("a");
   downloadLink.href = canvasImg.toDataURL();
@@ -100,8 +120,6 @@ $(async function () {
   const additionalOptionSet = $("#additional-options");
 
   let stylePresetValue = localStorageGet("stylePreset") ?? "";
-  let additionalOptionValues =
-    localStorageGet("additionalOptions") !== null ? JSON.parse(localStorageGet("additionalOptions")) : {};
 
   // Ensure output and buttons stay in sync
   function resetOutput() {
@@ -110,9 +128,8 @@ $(async function () {
     saveButton.attr("disabled", true);
   }
 
-  // Update output area based on changes to input box
-  postHtml.on("input", async function () {
-    // Update output preview box
+  // Update output preview box
+  async function updatePreview() {
     postContainer.empty();
     postLinkWrapper.val("");
     const sanitized = DOMPurify.sanitize(postHtml.val(), purifyConfig);
@@ -121,6 +138,11 @@ $(async function () {
     postLinkWrapper.val(postLink ?? "");
 
     resetOutput();
+  }
+
+  // Update output area based on changes to input box
+  postHtml.on("input", async function () {
+    await updatePreview();
   });
 
   postLinkWrapper.click(function () {
@@ -144,7 +166,7 @@ $(async function () {
   });
 
   // Toggle classes or do additional cases on specific checkboxes
-  additionalOptionSet.find('[type="checkbox"]').on("change", function () {
+  additionalOptionSet.find('[type="checkbox"]').on("change", async function () {
     const styleName = this.value;
     additionalOptionValues[this.value] = this.checked;
 
@@ -153,6 +175,12 @@ $(async function () {
 
     // Update saved settings
     localStorageSet("additionalOptions", JSON.stringify(additionalOptionValues));
+
+    // Re-render if we need to
+    const rerenderStyles = ["classic-footer"];
+    if (rerenderStyles.includes(styleName)) {
+      await updatePreview();
+    }
   });
 
   pasteClipboardButton.click(async function () {
@@ -220,7 +248,21 @@ $(async function () {
   // Sync local storage
   stylePresetSet.find(`[value="${stylePresetValue}"]`).click();
   Object.entries(additionalOptionValues).forEach(([option, value]) => {
-    if (!value) return;
+    const checkbox = additionalOptionSet.find(`[value="${option}"]`);
+    if (checkbox.length === 0) return;
+
+    if (checkbox[0].checked === value) return;
     additionalOptionSet.find(`[value="${option}"]`).click();
+  });
+
+  // Sync default Additional Options
+  additionalOptionSet.find('[type="checkbox"]').each(function () {
+    const name = this.value;
+    const checked = this.checked;
+
+    if (additionalOptionValues[name] !== undefined) {
+    } else {
+      additionalOptionValues[name] = checked;
+    }
   });
 });
