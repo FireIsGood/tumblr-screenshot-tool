@@ -25,6 +25,10 @@ async function processPost(wrapper, svgDefinitions) {
   const postPath = wrapper.find('a[aria-label="Permalink"]').attr("href");
   const postLink = `https://www.tumblr.com${postPath}`;
 
+  // Remove comments (yay Tumblr bug)
+  const commentsElem = wrapper.find(".hgDsD.PsI3u");
+  commentsElem.remove();
+
   // Replace SVG elements to be inline
   const svgToReplace = wrapper.find("use[href^='#']");
   svgToReplace.replaceWith(function () {
