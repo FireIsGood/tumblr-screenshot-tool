@@ -33,7 +33,7 @@ async function processPost(wrapper, svgDefinitions) {
 
   // Replace the footer with the logged out (old) version
   if (additionalOptionValues["classic-footer"] === true) {
-    const footer = wrapper.find("footer._Krz6");
+    const footer = wrapper.find("footer.gm9gb");
     const newFooter = createFooter(footer);
     footer.replaceWith(newFooter);
   }
