@@ -1,3 +1,5 @@
+import { createFooterMarkup } from "./lib.mjs";
+
 let loading = false; // Prevent multiple canvas screenshots at the same time
 const additionalOptionValues =
   localStorageGet("additionalOptions") !== null ? JSON.parse(localStorageGet("additionalOptions")) : {};
@@ -28,6 +30,13 @@ async function processPost(wrapper, svgDefinitions) {
   // Remove comments (yay Tumblr bug)
   const commentsElem = wrapper.find(".hgDsD.PsI3u");
   commentsElem.remove();
+
+  // Replace the footer with the logged out (old) version
+  if (additionalOptionValues["classic-footer"] === true) {
+    const footer = wrapper.find("footer._Krz6");
+    const newFooter = createFooter(footer);
+    footer.replaceWith(newFooter);
+  }
 
   // Replace SVG elements to be inline
   const svgToReplace = wrapper.find("use[href^='#']");
@@ -72,6 +81,15 @@ async function processPost(wrapper, svgDefinitions) {
   });
 
   return { postLink };
+}
+
+function createFooter(footer) {
+  const reblogCount = parseFloat(footer.find('[aria-label="Reblog"]').text().split(",").join(""));
+  const likeCount = parseFloat(footer.find('[aria-label="Like"]').text().split(",").join(""));
+
+  const newFooter = $(createFooterMarkup(reblogCount + likeCount));
+
+  return newFooter;
 }
 
 function downloadCanvas(canvasImg, fileName) {
