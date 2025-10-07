@@ -533,7 +533,7 @@ textarea {
   display: none;
 }
 /* Old style notes top border or something? */
-.tOKgq .m5KTc {
+.tOKgq .m5KTc:not([aria-label="Blaze"]) {
   border-top: 1px solid rgba(var(--black), 0.13);
 }
 
