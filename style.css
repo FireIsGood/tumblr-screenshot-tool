@@ -532,6 +532,10 @@ textarea {
 .m5KTc:has([aria-label="Blaze"]) {
   display: none;
 }
+/* Old style notes top border or something? */
+.tOKgq .m5KTc {
+  border-top: 1px solid rgba(var(--black), 0.13);
+}
 
 /* Remove post box shadow so custom one is the only one */
 .FtjPK.r0etU {
