@@ -25,7 +25,7 @@ const copyToast = Toastify({
 async function processPost(wrapper, svgDefinitions) {
   // Save links
   const postPath = wrapper.find('a[aria-label="Permalink"]').attr("href");
-  const postLink = `https://www.tumblr.com${postPath}`;
+  const postLink = postPath && `https://www.tumblr.com${postPath}`; // Not working anymore waow
 
   // Remove comments (yay Tumblr bug)
   const commentsElem = wrapper.find(".hgDsD.PsI3u");
