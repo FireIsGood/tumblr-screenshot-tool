@@ -27,10 +27,6 @@ async function processPost(wrapper, svgDefinitions) {
   const postPath = wrapper.find('a[aria-label="Permalink"]').attr("href");
   const postLink = postPath && `https://www.tumblr.com${postPath}`; // Not working anymore waow
 
-  // Remove comments (yay Tumblr bug)
-  const commentsElem = wrapper.find(".hgDsD.PsI3u");
-  commentsElem.remove();
-
   // Replace the footer with the logged out (old) version
   if (additionalOptionValues["classic-footer"] === true) {
     const footer = wrapper.find("footer.gm9gb");
