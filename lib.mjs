@@ -1,5 +1,4 @@
-export function createFooterMarkup(notes) {
-  const count = notes.toLocaleString("en");
+export function createFooterMarkup(count) {
   return `<footer aria-label="Post Footer" class="tOKgq" role="contentinfo">
   <div class="m5KTc">
     <div class="gstmW">

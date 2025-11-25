@@ -80,10 +80,16 @@ async function processPost(wrapper, svgDefinitions) {
 }
 
 function createFooter(footer) {
-  const reblogCount = parseFloat(footer.find('[aria-label="Reblog"]').text().split(",").join(""));
-  const likeCount = parseFloat(footer.find('[aria-label="Like"]').text().split(",").join(""));
+  const reblogText = footer.find('[aria-label="Reblog"]').text().split(",").join("");
+  const reblogCount = parseFloat(reblogText);
+  const likeText = footer.find('[aria-label="Like"]').text().split(",").join("");
+  const likeCount = parseFloat(likeText);
 
-  const newFooter = $(createFooterMarkup(reblogCount + likeCount));
+  const noteCountThousands = reblogText.endsWith("K") || likeText.endsWith("K");
+
+  const notesCount = (reblogCount + likeCount).toLocaleString("en") + (noteCountThousands ? "K" : "");
+
+  const newFooter = $(createFooterMarkup(notesCount));
 
   return newFooter;
 }
