@@ -540,6 +540,10 @@ textarea {
 .tOKgq .m5KTc:not([aria-label="Blaze"]) {
   border-top: 1px solid rgba(var(--black), 0.13);
 }
+/* Classic footer the top margin doesn't make sense */
+.tOKgq {
+  margin-top: 0;
+}
 
 /* Remove post box shadow so custom one is the only one */
 .FtjPK.r0etU {
