@@ -544,6 +544,9 @@ textarea {
 .tOKgq {
   margin-top: 0;
 }
+.hAFp3 + .tOKgq {
+  margin-top: 25px;
+}
 
 /* Remove post box shadow so custom one is the only one */
 .FtjPK.r0etU {
