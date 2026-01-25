@@ -233,7 +233,7 @@ footer {
 }
 
 #post-wrapper.remove-header {
-  header:has(#managed-icon__ds-badge-reblog-20) {
+  header:has(#managed-icon__ds-badge-reblog-20, [aria-label^="Reblogged"]) {
     display: none;
 
     & + div {
