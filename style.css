@@ -260,6 +260,9 @@ footer {
   .CQmeg {
     display: block;
   }
+  .GzjsW.lN9Zs .CQmeg {
+    padding-top: 12px;
+  }
 
   /* Image sizing */
   .HsI7c {
@@ -286,7 +289,6 @@ footer {
     box-sizing: border-box;
     min-height: unset;
     display: block;
-    padding-inline: var(--horizontal-pad);
   }
 
   /* Margin bumps */
