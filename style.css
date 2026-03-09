@@ -311,6 +311,15 @@ footer {
   }
 }
 
+#post-wrapper.hide-tags {
+  .hAFp3.U7mrl {
+    display: none;
+  }
+  .hAFp3 + .tOKgq {
+    margin-top: 0;
+  }
+}
+
 #post-wrapper-inner {
   border-radius: 8px;
   background-color: white;
