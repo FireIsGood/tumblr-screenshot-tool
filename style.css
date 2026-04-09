@@ -265,7 +265,7 @@ footer {
   }
 
   /* Image sizing */
-  .HsI7c {
+  ._0MuRn {
     padding-bottom: unset !important;
   }
   .RoN4R {
@@ -291,6 +291,11 @@ footer {
     display: block;
   }
 
+  /* Interspersed text sections*/
+  .CQmeg + .k31gt {
+    padding-top: 15px;
+  }
+
   /* Margin bumps */
   .GzjsW .CQmeg + .CQmeg {
     margin-top: 0;
@@ -299,6 +304,14 @@ footer {
   .GzjsW .CQmeg > button + button {
     margin-left: 0;
     margin-top: var(--vertical-pad);
+  }
+
+  /* Multiple galleries fix */
+  .GzjsW.lN9Zs .CQmeg:not(:has(~ .CQmeg)) {
+    padding-bottom: 0;
+  }
+  .GzjsW.lN9Zs .CQmeg:not(:has(+ .CQmeg)) {
+    padding-bottom: 12px;
   }
 }
 
