@@ -265,9 +265,6 @@ footer {
   }
 
   /* Image sizing */
-  ._0MuRn {
-    padding-bottom: unset !important;
-  }
   .RoN4R {
     position: static;
   }
@@ -570,6 +567,10 @@ textarea {
 }
 .hAFp3 + .tOKgq {
   margin-top: 25px;
+}
+/* Image sizing */
+._0MuRn {
+  padding-bottom: unset !important;
 }
 
 /* Remove post box shadow so custom one is the only one */
