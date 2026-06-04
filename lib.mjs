@@ -1,82 +1,67 @@
 export function createFooterMarkup(count) {
-  return `<footer aria-label="Post Footer" class="tOKgq" role="contentinfo">
-  <div class="m5KTc">
-    <div class="gstmW">
-      <div>
-        <button class="TRX6J rlv6m">
-          <span class="EvhBA RHkx9" tabindex="-1"
-            ><span class="zrO3e"
-              ><span data-testid="noteCountTotal"
-                ><div class="vE6sH">
-                  <span class="xu5ZG" title="${count}"><span class="lJK40">${count}</span> notes</span>
-                </div></span
-              ></span
-            ></span
-          >
-        </button>
-      </div>
-    </div>
-    <div class="MCavR">
-      <div class="sfGru">
-        <button class="TRX6J" aria-label="Share">
-          <span class="EvhBA" tabindex="-1"
-            ><svg
-              height="24"
-              role="presentation"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-              style="--icon-color-primary: rgba(var(--black), 0.65)"
-            >
-              <use href="#managed-icon__share-icon-proper"></use></svg
-          ></span>
-        </button>
-      </div>
-      <div class="sfGru">
-        <button class="TRX6J" aria-label="Reply">
-          <span class="EvhBA" tabindex="-1"
-            ><svg
-              height="24"
-              role="presentation"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-              style="--icon-color-primary: rgba(var(--black), 0.65)"
-            >
-              <use href="#managed-icon__ds-reply-outline-24"></use></svg
-          ></span>
-        </button>
-      </div>
-      <div class="sfGru">
-        <span class="Vcrhu" data-testid="controlled-popover-wrapper" style="height: 100%"
-          ><span class="Vcrhu"
-            ><a aria-label="Reblog" class="fvSXi qRMZE"
+  return `<footer aria-label="Post Footer" class="Bpgt9" role="contentinfo">
+  <div>
+    <a
+      class="vHNg4"
+      rel="noopener"
+      target="_blank"
+      ><span class="KiFLn"
+        ><div class="vE6sH">
+          <span class="xu5ZG" title="34,852 notes"><span class="lJK40">34,852</span> notes</span>
+        </div></span
+      ></a
+    >
+  </div>
+  <div class="SGI72">
+    <div class="muKGV">
+      <span class="BPf9u" data-testid="controlled-popover-wrapper"
+        ><span class="BPf9u"
+          ><button class="TRX6J" aria-label="More options" tabindex="0">
+            <span class="EvhBA" tabindex="-1"
               ><svg
-                height="21"
+                height="10"
                 role="presentation"
-                width="21"
+                style="transform: rotate(0deg); transform-origin: center"
+                width="18"
                 xmlns="http://www.w3.org/2000/svg"
-                style="--icon-color-primary: rgba(var(--black), 0.65)"
               >
-                <use href="#managed-icon__reblog"></use></svg></a></span
-        ></span>
-      </div>
-      <div class="sfGru">
-        <span class="Vcrhu" data-testid="controlled-popover-wrapper" style="height: 100%"
-          ><span class="Vcrhu"
-            ><button class="TRX6J">
-              <span class="EvhBA B1Z5w" tabindex="-1"
-                ><svg
-                  height="21"
-                  role="presentation"
-                  width="23"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="--icon-color-primary: rgba(var(--black), 0.65)"
-                >
-                  <use href="#managed-icon__like-empty"></use></svg
-              ></span></button></span
-        ></span>
-      </div>
+                <use href="#managed-icon__ellipsis"></use></svg
+            ></span></button></span
+      ></span>
+    </div>
+    <div class="muKGV">
+      <a
+        aria-label="Reblog"
+        class="f7IhF"
+        rel="noopener"
+        target="_blank"
+        ><svg
+          height="21"
+          role="presentation"
+          width="23"
+          xmlns="http://www.w3.org/2000/svg"
+          style="--icon-color-primary: rgba(var(--black), 0.65)"
+        >
+          <use href="#managed-icon__reblog"></use></svg
+      ></a>
+    </div>
+    <div class="muKGV">
+      <a
+        aria-label="Like"
+        class="EIVbN"
+        rel="noopener"
+        target="_blank"
+        ><svg
+          height="21"
+          role="presentation"
+          width="23"
+          xmlns="http://www.w3.org/2000/svg"
+          style="--icon-color-primary: rgba(var(--black), 0.65)"
+        >
+          <use href="#managed-icon__like-empty"></use></svg
+      ></a>
     </div>
   </div>
-  <div class="yTb5J"></div>
-</footer>`;
+</footer>
+`;
 }
