@@ -7,12 +7,13 @@ export function createFooterMarkup(count) {
       target="_blank"
       ><span class="KiFLn"
         ><div class="vE6sH">
-          <span class="xu5ZG" title="34,852 notes"><span class="lJK40">34,852</span> notes</span>
+          <span class="xu5ZG" title="${count} notes"><span class="lJK40">${count}</span> notes</span>
         </div></span
       ></a
     >
   </div>
   <div class="SGI72">
+    <!-- (removing this for classic style look)
     <div class="muKGV">
       <span class="BPf9u" data-testid="controlled-popover-wrapper"
         ><span class="BPf9u"
@@ -28,6 +29,39 @@ export function createFooterMarkup(count) {
                 <use href="#managed-icon__ellipsis"></use></svg
             ></span></button></span
       ></span>
+    </div> -->
+    <!-- The two next buttons aren't actually real btw, I'm remaking the classic from what it appears to be -->
+    <div class="muKGV">
+      <a
+        aria-label="Share"
+        class="f7IhF"
+        rel="noopener"
+        target="_blank"
+        ><svg
+          height="24"
+          role="presentation"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+          style="--icon-color-primary: rgba(var(--black), 0.65)"
+        >
+          <use href="#managed-icon__share-icon-proper"></use></svg
+      ></a>
+    </div>
+    <div class="muKGV">
+      <a
+        aria-label="Reply"
+        class="f7IhF"
+        rel="noopener"
+        target="_blank"
+        ><svg
+          height="24"
+          role="presentation"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+          style="--icon-color-primary: rgba(var(--black), 0.65)"
+        >
+          <use href="#managed-icon__ds-reply-outline-24"></use></svg
+      ></a>
     </div>
     <div class="muKGV">
       <a

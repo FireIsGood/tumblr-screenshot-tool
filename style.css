@@ -557,16 +557,18 @@ textarea {
 .m5KTc:has([aria-label="Blaze"]) {
   display: none;
 }
-/* Old style notes top border or something? */
-.tOKgq .m5KTc:not([aria-label="Blaze"]) {
+/* Classic footer (It is now so different that this is but an illusion)*/
+.hAFp3 + .Bpgt9 {
+  margin-top: 24px;
+}
+.Bpgt9 {
   border-top: 1px solid rgba(var(--black), 0.13);
-}
-/* Classic footer the top margin doesn't make sense */
-.tOKgq {
-  margin-top: 0;
-}
-.hAFp3 + .tOKgq {
-  margin-top: 25px;
+
+  margin: 0 var(--post-padding);
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  display: flex;
 }
 
 /* Remove post box shadow so custom one is the only one */
