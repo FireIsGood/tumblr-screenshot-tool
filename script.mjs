@@ -36,7 +36,6 @@ async function processPost(wrapper, svgDefinitions) {
 
   // Remove ALT text buttons (they are bugged with DOMPurify because of nested buttons or something?)
   const altTextButtons = wrapper.find(".Dt_Mi").remove();
-  console.log(altTextButtons);
   altTextButtons.remove();
 
   // Replace SVG elements to be inline
