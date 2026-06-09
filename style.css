@@ -294,13 +294,19 @@ body > footer {
   }
 
   /* Margin bumps */
-  .GzjsW .CQmeg + .CQmeg {
+  .GzjsW .CQmeg {
     margin-top: 0;
     padding-top: var(--vertical-pad);
   }
   .GzjsW .CQmeg > button + button {
     margin-left: 0;
     margin-top: var(--vertical-pad);
+  }
+
+  .GzjsW .CQmeg > button,
+  figure,
+  img {
+    border-radius: 0;
   }
 
   /* Multiple galleries fix */
