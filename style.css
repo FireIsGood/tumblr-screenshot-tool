@@ -305,7 +305,7 @@ body > footer {
 
   .GzjsW .CQmeg > button,
   figure,
-  img {
+  img:not(.NdR1I) {
     border-radius: 0;
   }
 
