@@ -85,12 +85,13 @@ async function processPost(wrapper, svgDefinitions) {
 
 function createFooter(footer) {
   const reblogText = footer.find('[aria-label="Reblog"]').text().split(",").join("");
-  const reblogCount = parseFloat(reblogText);
+  const reblogCount = parseFloat(reblogText || 0);
   const likeText = footer.find('[aria-label="Like"]').text().split(",").join("");
-  const likeCount = parseFloat(likeText);
+  const likeCount = parseFloat(likeText || 0);
 
   const noteCountThousands = reblogText.endsWith("K") || likeText.endsWith("K");
 
+  console.log(reblogCount, likeCount);
   const notesCount = (reblogCount + likeCount).toLocaleString("en") + (noteCountThousands ? "K" : "");
 
   const newFooter = $(createFooterMarkup(notesCount));
