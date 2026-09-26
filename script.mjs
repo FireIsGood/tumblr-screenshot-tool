@@ -34,6 +34,9 @@ async function processPost(wrapper, svgDefinitions) {
     footer.replaceWith(newFooter);
   }
 
+  // Remove [sizes] values so images can be resized properly in vertical image galleries mode
+  wrapper.find("img").attr("sizes", null);
+
   // Remove ALT text buttons (they are bugged with DOMPurify because of nested buttons or something?)
   const altTextButtons = wrapper.find(".Dt_Mi").remove();
   altTextButtons.remove();
