@@ -297,13 +297,10 @@ body > footer {
   }
 
   /* Margin bumps */
+  .GzjsW .CQmeg > figure + figure,
   .GzjsW .CQmeg {
     margin-top: 0;
     padding-top: var(--vertical-pad);
-  }
-  .GzjsW .CQmeg > button + button {
-    margin-left: 0;
-    margin-top: var(--vertical-pad);
   }
 
   .GzjsW .CQmeg > button,
